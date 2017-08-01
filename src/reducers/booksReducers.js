@@ -1,27 +1,12 @@
 "use-strict";
 
-import * as types from '../constants/types'
+import * as types from "../constants/types";
 
 // Books Reducers
 
-const initialState = {books: [
-    {
-      _id: 1,
-      title: "Title of the book",
-      price: 111,
-      description: "Description of the book"
-    },
-    {
-      _id: 2,
-      title: "Title of another book",
-      price: 90,
-      description: "Description of another book"
-    }
-  ]}
-export default function booksReducers(
-  state = initialState,
-  action
-) {
+const initialState = { books: [] };
+
+export default function booksReducers(state = initialState, action) {
   switch (action.type) {
     case types.POST_BOOKS:
       // let books = state.books.concat(action.payload);
@@ -55,9 +40,10 @@ export default function booksReducers(
         )
       };
     case types.GET_BOOKS:
-      return { 
-        ...state, books:[...state.books]
-      }
+      return {
+        ...state,
+        books: [...action.payload]
+      };
     default:
       return state;
   }

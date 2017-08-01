@@ -5,3 +5,6 @@ export const UPDATE_BOOKS = "update_books";
 export const ADD_TO_CART = "add_to_cart";
 export const DELETE_CART_ITEM = "delete_cart_item";
 export const UPDATE_CART = "update_cart";
+
+export const POST_BOOKS_REJECTED = "post_books_rejected";
+export const GET_BOOKS_REJECTED = "get_books_rejected";

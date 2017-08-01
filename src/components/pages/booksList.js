@@ -11,20 +11,7 @@ import Cart from "./cart";
 
 export class BooksList extends Component {
   componentDidMount() {
-    this.props.getBooks([
-      {
-        _id: 3,
-        title: "Book",
-        price: 11,
-        description: "Description of the book"
-      },
-      {
-        _id: 4,
-        title: "Another book",
-        price: 990,
-        description: "Description of another book"
-      }
-    ]);
+    this.props.getBooks();
   }
 
   render() {
