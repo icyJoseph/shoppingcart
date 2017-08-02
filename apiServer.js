@@ -20,7 +20,7 @@ mongoose.connect("mongodb://localhost:27017/bookshop");
 
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "# MongoDB - connection error: "));
-require('dotenv').config()
+require("dotenv").config();
 // SET UP SESSION
 app.use(
   session({
@@ -105,6 +105,22 @@ app.put("/books/:_id", function(req, res) {
   Books.findOneAndUpdate(query, update, options, function(err, books) {
     if (err) throw err;
     res.json(books);
+  });
+});
+
+// GET-ing image books API
+
+app.get("/images", function(req, res) {
+  const imgFolder = __dirname + "/public/images/";
+  const fs = require("fs");
+
+  fs.readdir(imgFolder, function(err, files) {
+    if (err) throw err;
+    const filesArr = [];
+    files.forEach(function(file) {
+      filesArr.push({ name: file });
+    });
+    res.json(filesArr);
   });
 });
 
