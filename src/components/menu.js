@@ -26,8 +26,8 @@ class Menu extends Component {
               Admin
             </NavItem>
             <NavItem eventKey={2} href="/cart">
-              Your Cart
-              <Badge className="ba">{this.props.cartItemsNumber}</Badge>
+              Your Cart {" "}
+              <Badge className="ba">{this.props.cartItemsNumber ? this.props.cartItemsNumber : ""}</Badge>
             </NavItem>
           </Nav>
         </Navbar.Collapse>
