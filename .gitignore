@@ -1,5 +1,6 @@
 node_modules
 public/bundle.js
 public/images
-routes
+routes/
 .env
+public/index_no.html
