@@ -26,9 +26,6 @@ export class BooksList extends Component {
           <Cart />
         </Row>
         <Row style={{ marginTop: "10px" }}>
-          <Col xs={12} sm={6}>
-            <BooksForm />
-          </Col>
           {booksList}
         </Row>
       </Grid>

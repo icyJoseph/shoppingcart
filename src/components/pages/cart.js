@@ -79,7 +79,7 @@ export class Cart extends Component {
               <Button
                 onClick={() =>
                   item.quantity > 1
-                    ? this.props.updateCart(item._id, -1)
+                    ? this.props.updateCart(item._id, -1, this.props.cart)
                     : this.onDelete(item._id)}
                 bsStyle="default"
                 bsSize="small"

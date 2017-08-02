@@ -53,3 +53,9 @@ export const getBooks = () => {
       .catch(err => dispatch({ type: types.GET_BOOKS_REJECTED, payload: err }));
   };
 };
+
+export const resetButton = () => {
+  return {
+    type: types.RESET_BUTTON
+  };
+};

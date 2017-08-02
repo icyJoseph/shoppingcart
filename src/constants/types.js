@@ -6,6 +6,7 @@ export const ADD_TO_CART = "add_to_cart";
 export const DELETE_CART_ITEM = "delete_cart_item";
 export const UPDATE_CART = "update_cart";
 export const GET_CART = "get_cart";
+export const RESET_BUTTON = "reset_button";
 
 export const POST_BOOKS_REJECTED = "post_books_rejected";
 export const GET_BOOKS_REJECTED = "get_books_rejected";

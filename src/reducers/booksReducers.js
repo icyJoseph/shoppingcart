@@ -11,13 +11,22 @@ export default function booksReducers(state = initialState, action) {
     case types.POST_BOOKS:
       // let books = state.books.concat(action.payload);
       // return {books}
-      return { books: [...state.books, ...action.payload] };
+      return {
+        books: [...state.books, ...action.payload],
+        msg: "Saved! Click to Continue",
+        style: "success"
+      };
+    case types.POST_BOOKS_REJECTED:
+      return { ...state, msg: "Please, try again", style: "danger" };
+
+    case types.RESET_BUTTON:
+      return { ...state, msg: null, style: null };
     case types.DELETE_BOOKS:
       // get a copy of the state
       const currentBookToDelete = [...state.books];
       // find the actual index of the book to remove (array index)
       let indexToDelete = currentBookToDelete.findIndex(
-        books => books._id == action.payloads
+        books => books._id == action.payload
       );
       // Slide the object from the beginning to the index -1 and from index + 1 to the end, clever use of spread...
 
