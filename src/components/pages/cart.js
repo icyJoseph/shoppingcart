@@ -23,7 +23,7 @@ export class Cart extends Component {
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.getCart();
   }
 
@@ -108,7 +108,7 @@ export class Cart extends Component {
       </Panel>
     );
     return (
-      <Panel header="cart" bsStyle="primary">
+      <Panel header="cart" bsStyle="primary" style={{ marginTop: "10px" }}>
         {cartItemList}
         <Row>
           <Col xs={12}>

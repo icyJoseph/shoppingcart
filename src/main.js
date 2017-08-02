@@ -4,7 +4,12 @@ import { connect } from "react-redux";
 import Menu from "./components/menu";
 import Footer from "./components/footer";
 
+import * as actions from "../src/actions/cartActions";
+
 class Main extends Component {
+  componentDidMount() {
+    this.props.getCart();
+  }
   render() {
     return (
       <div>
@@ -22,4 +27,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, null)(Main);
+export default connect(mapStateToProps, { getCart: actions.getCart })(Main);

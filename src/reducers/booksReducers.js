@@ -14,13 +14,19 @@ export default function booksReducers(state = initialState, action) {
       return {
         books: [...state.books, ...action.payload],
         msg: "Saved! Click to Continue",
-        style: "success"
+        style: "success",
+        validation: "success"
       };
     case types.POST_BOOKS_REJECTED:
-      return { ...state, msg: "Please, try again", style: "danger" };
+      return {
+        ...state,
+        msg: "Please, try again",
+        style: "danger",
+        validation: "error"
+      };
 
     case types.RESET_BUTTON:
-      return { ...state, msg: null, style: null };
+      return { ...state, msg: null, style: null, validation: null };
     case types.DELETE_BOOKS:
       // get a copy of the state
       const currentBookToDelete = [...state.books];
