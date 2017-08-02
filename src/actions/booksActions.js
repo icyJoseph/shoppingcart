@@ -8,7 +8,7 @@ export const postBook = book => {
   // };
   return function(dispatch) {
     axios
-      .post("/books", book)
+      .post("/api/books", book)
       .then(response =>
         dispatch({ type: types.POST_BOOKS, payload: response.data })
       )
@@ -19,9 +19,17 @@ export const postBook = book => {
 };
 
 export const deleteBook = _id => {
-  return {
-    type: types.DELETE_BOOKS,
-    payload: _id
+  // return {
+  //   type: types.DELETE_BOOKS,
+  //   payload: _id
+  // };
+  return function(dispatch) {
+    axios
+      .delete("/api/books/" + _id)
+      .then(response => dispatch({ type: types.DELETE_BOOKS, payload: _id }))
+      .catch(err =>
+        dispatch({ type: types.DELETE_BOOKS_REJECTED, payload: err })
+      );
   };
 };
 
@@ -38,12 +46,10 @@ export const getBooks = () => {
   // };
   return function(dispatch) {
     axios
-      .get("/books")
+      .get("/api/books")
       .then(response =>
         dispatch({ type: types.GET_BOOKS, payload: response.data })
       )
-      .catch(err =>
-        dispatch({ type: types.GET_BOOKS_REJECTED, payload: ":(" })
-      );
+      .catch(err => dispatch({ type: types.GET_BOOKS_REJECTED, payload: err }));
   };
 };

@@ -30,13 +30,13 @@ class BooksForm extends Component {
   onDelete() {
     let bookId = findDOMNode(this.refs.delete).value;
     console.log(bookId)
-    this.props.deleteBook({_id:bookId});
+    this.props.deleteBook(bookId);
   }
 
   render() {
     const booksList = this.props.books.map(book =>
-      <option key={book._id}>
-        {book._id}
+      <option key={book._id} value={book._id}>
+        {book.title}
       </option>
     );
     return (

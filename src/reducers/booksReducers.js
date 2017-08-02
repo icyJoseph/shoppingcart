@@ -16,8 +16,8 @@ export default function booksReducers(state = initialState, action) {
       // get a copy of the state
       const currentBookToDelete = [...state.books];
       // find the actual index of the book to remove (array index)
-      const indexToDelete = currentBookToDelete.findIndex(
-        book => book._id == action.payload._id
+      let indexToDelete = currentBookToDelete.findIndex(
+        books => books._id == action.payloads
       );
       // Slide the object from the beginning to the index -1 and from index + 1 to the end, clever use of spread...
 
