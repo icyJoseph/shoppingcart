@@ -16,11 +16,15 @@ app.use(cookieParser());
 
 var mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/bookshop");
+//mongoose.connect("mongodb://localhost:27017/bookshop");
+require("dotenv").config();
+const user = process.env.DBUSER;
+const pass = process.env.DBPASS;
+mongoose.connect(`mongodb://${user}:${pass}@ds129462.mlab.com:29462/bookshop`);
 
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "# MongoDB - connection error: "));
-require("dotenv").config();
+
 // SET UP SESSION
 app.use(
   session({
