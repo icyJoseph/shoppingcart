@@ -18,24 +18,31 @@ export default function cartReducers(state = { cart: [] }, action) {
         totalQty: totals(action.payload).total
       };
     case types.UPDATE_CART:
-      const currentCart = [...state.cart];
-      let indexToUpdate = currentCart.findIndex(
-        item => item._id === action._id
-      );
-      let bookUpdate = {
-        ...currentCart[indexToUpdate],
-        quantity: currentCart[indexToUpdate].quantity + action.unit
-      };
-      let nextCart = [
-        ...currentCart.slice(0, indexToUpdate),
-        bookUpdate,
-        ...currentCart.slice(indexToUpdate + 1)
-      ];
+      // const currentCart = [...state.cart];
+      // let indexToUpdate = currentCart.findIndex(
+      //   item => item._id === action._id
+      // );
+      // let bookUpdate = {
+      //   ...currentCart[indexToUpdate],
+      //   quantity: currentCart[indexToUpdate].quantity + action.unit
+      // };
+      // let nextCart = [
+      //   ...currentCart.slice(0, indexToUpdate),
+      //   bookUpdate,
+      //   ...currentCart.slice(indexToUpdate + 1)
+      // ];
       return {
         ...state,
-        cart: nextCart,
-        totalAmount: totals(nextCart).amount,
-        totalQty: totals(nextCart).total
+        cart: action.payload,
+        totalAmount: totals(action.payload).amount,
+        totalQty: totals(action.payload).total
+      };
+    case types.GET_CART:
+      return {
+        ...state,
+        cart: action.payload,
+        totalAmount: totals(action.payload).amount,
+        totalQty: totals(action.payload).total
       };
     default:
       return state;

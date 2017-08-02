@@ -22,6 +22,11 @@ export class Cart extends Component {
       showModal: false
     };
   }
+
+  componentDidMount() {
+    this.props.getCart();
+  }
+
   onDelete(_id) {
     const currentCart = this.props.cart;
     const indexToDelete = currentCart.findIndex(item => item._id === _id);
@@ -74,7 +79,7 @@ export class Cart extends Component {
               <Button
                 onClick={() =>
                   item.quantity > 1
-                    ? this.props.updateCart(item._id, -1)
+                    ? this.props.updateCart(item._id, -1, this.props.cart)
                     : this.onDelete(item._id)}
                 bsStyle="default"
                 bsSize="small"
@@ -82,7 +87,8 @@ export class Cart extends Component {
                 -
               </Button>
               <Button
-                onClick={() => this.props.updateCart(item._id, 1)}
+                onClick={() =>
+                  this.props.updateCart(item._id, 1, this.props.cart)}
                 bsStyle="default"
                 bsSize="small"
               >
@@ -90,7 +96,7 @@ export class Cart extends Component {
               </Button>
               <span> </span>
               <Button
-                onClick={this.onDelete.bind(this, item._id)}
+                onClick={this.onDelete.bind(this, item._id, this.props.cart)}
                 bsStyle="danger"
                 bsSize="small"
               >
@@ -102,11 +108,13 @@ export class Cart extends Component {
       </Panel>
     );
     return (
-      <Panel header="cart" bsStyle="primary">
+      <Panel header="cart" bsStyle="primary" style={{ marginTop: "10px" }}>
         {cartItemList}
         <Row>
           <Col xs={12}>
-            <h6>Total amount:{this.props.totalAmount}</h6>
+            <h6>
+              Total amount:{this.props.totalAmount}
+            </h6>
             <Button
               onClick={this.open.bind(this)}
               bsStyle="success"
@@ -126,7 +134,9 @@ export class Cart extends Component {
           </Modal.Body>
           <Modal.Footer>
             <Col>
-              <h6>Total $:{this.props.totalAmount}</h6>
+              <h6>
+                Total $:{this.props.totalAmount}
+              </h6>
             </Col>
             <Button onClick={this.close.bind(this)}>Close</Button>
           </Modal.Footer>
@@ -147,7 +157,8 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       deleteCartItem: actions.deleteCartItem,
-      updateCart: actions.updateCart
+      updateCart: actions.updateCart,
+      getCart: actions.getCart
     },
     dispatch
   );

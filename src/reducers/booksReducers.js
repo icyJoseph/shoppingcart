@@ -1,38 +1,38 @@
 "use-strict";
 
-import * as types from '../constants/types'
+import * as types from "../constants/types";
 
 // Books Reducers
 
-const initialState = {books: [
-    {
-      _id: 1,
-      title: "Title of the book",
-      price: 111,
-      description: "Description of the book"
-    },
-    {
-      _id: 2,
-      title: "Title of another book",
-      price: 90,
-      description: "Description of another book"
-    }
-  ]}
-export default function booksReducers(
-  state = initialState,
-  action
-) {
+const initialState = { books: [] };
+
+export default function booksReducers(state = initialState, action) {
   switch (action.type) {
     case types.POST_BOOKS:
       // let books = state.books.concat(action.payload);
       // return {books}
-      return { books: [...state.books, ...action.payload] };
+      return {
+        books: [...state.books, ...action.payload],
+        msg: "Saved! Click to Continue",
+        style: "success",
+        validation: "success"
+      };
+    case types.POST_BOOKS_REJECTED:
+      return {
+        ...state,
+        msg: "Please, try again",
+        style: "danger",
+        validation: "error"
+      };
+
+    case types.RESET_BUTTON:
+      return { ...state, msg: null, style: null, validation: null };
     case types.DELETE_BOOKS:
       // get a copy of the state
       const currentBookToDelete = [...state.books];
       // find the actual index of the book to remove (array index)
-      const indexToDelete = currentBookToDelete.findIndex(
-        book => book._id == action.payload._id
+      let indexToDelete = currentBookToDelete.findIndex(
+        books => books._id == action.payload
       );
       // Slide the object from the beginning to the index -1 and from index + 1 to the end, clever use of spread...
 
@@ -55,9 +55,10 @@ export default function booksReducers(
         )
       };
     case types.GET_BOOKS:
-      return { 
-        ...state, books:[...state.books]
-      }
+      return {
+        ...state,
+        books: [...action.payload]
+      };
     default:
       return state;
   }

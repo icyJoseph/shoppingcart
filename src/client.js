@@ -4,6 +4,8 @@ import ReactDOM from "react-dom";
 import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
 import logger from "redux-logger";
+import thunk from "redux-thunk";
+
 import reducers from "./reducers/index";
 import * as booksActions from "./actions/booksActions";
 import * as cartActions from "./actions/cartActions";
@@ -21,7 +23,7 @@ import {
   hashHistory
 } from "react-router";
 
-const middleware = applyMiddleware(logger);
+const middleware = applyMiddleware(thunk, logger);
 // Store
 const store = createStore(reducers, middleware);
 
