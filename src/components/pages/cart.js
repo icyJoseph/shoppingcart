@@ -113,7 +113,7 @@ export class Cart extends Component {
         <Row>
           <Col xs={12}>
             <h6>
-              Total amount:{this.props.totalAmount}
+              Total amount: {this.props.totalAmount}
             </h6>
             <Button
               onClick={this.open.bind(this)}
@@ -135,7 +135,7 @@ export class Cart extends Component {
           <Modal.Footer>
             <Col>
               <h6>
-                Total $:{this.props.totalAmount}
+                Total $: {this.props.totalAmount}
               </h6>
             </Col>
             <Button onClick={this.close.bind(this)}>Close</Button>
