@@ -4,11 +4,22 @@ var favicon = require("serve-favicon");
 var logger = require("morgan");
 var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
+var httpProxy = require("http-proxy");
 
-var index = require("./routes/index");
-var users = require("./routes/users");
+// var index = require("./routes/index");
+// var users = require("./routes/users");
 
 var app = express();
+
+// PROXY TO API
+const apiProxy = httpProxy.createProxyServer({
+  target: "http://localhost:3001"
+});
+
+app.use("/api", function(req, res) {
+  apiProxy.web(req, res);
+});
+// END PROXY
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
@@ -29,60 +40,6 @@ var mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost:27017/bookshop");
 
 var Books = require("./models/books");
-
-// POST BOOKS API
-
-app.post("/books", function(req, res) {
-  var book = req.body;
-  Books.create(book, function(err, books) {
-    if (err) throw err;
-    res.json(books);
-  });
-});
-
-// GET BOOKS API
-
-app.get("/books", function(req, res) {
-  Books.find(function(err, books) {
-    if (err) throw err;
-    res.json(books);
-  });
-});
-
-// DELETE BOOKS API
-
-app.delete("/books/:_id", function(req, res) {
-  var query = { _id: req.params._id };
-
-  Books.remove(query, function(err, books) {
-    if (err) throw err;
-    res.json(books);
-  });
-});
-
-// UPDATE BOOKS API
-
-app.put("/books/:_id", function(req, res) {
-  var book = req.body;
-  var query = req.params._id;
-
-  var update = {
-    $set: {
-      title: book.title,
-      description: book.description,
-      image: book.image,
-      price: book.price
-    }
-  };
-  var options = { new: true };
-
-  Books.findOneAndUpdate(query, update, options, function(err, books) {
-    if (err) throw err;
-    res.json(books);
-  });
-});
-
-// END APIs
 
 app.get("*", function(req, res) {
   res.sendFile(path.resolve(__dirname, "public", "index.html"));
