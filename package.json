@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "concurrently --kill-others \"nodemon ./bin/www\" \"nodemon apiServer.js\""
+    "dev": "concurrently --kill-others \"nodemon ./bin/www\" \"nodemon apiServer.js\"",
+    "start": "node ./bin/www & node apiServer.js"
   },
   "dependencies": {
     "axios": "^0.16.2",
