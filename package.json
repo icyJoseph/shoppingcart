@@ -23,6 +23,7 @@
     "http-proxy": "^1.16.2",
     "jade": "~1.11.0",
     "morgan": "~1.8.1",
+    "mongoose": "^4.11.5",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.1",
     "react-dom": "^15.6.1",
@@ -35,7 +36,6 @@
   },
   "devDependencies": {
     "concurrently": "^3.5.0",
-    "mongoose": "^4.11.5",
     "nodemon": "^1.11.0",
     "redux-logger": "^3.0.6"
   }
