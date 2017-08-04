@@ -67,8 +67,8 @@ class BookItem extends Component {
               {isClicked === false &&
               description !== null &&
               description.length > 50
-                ? "...read more"
-                : "...close"}
+                ? "Read more"
+                : "Close"}
             </button>
             <h6>
               usd. {price}
